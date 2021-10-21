@@ -1,3 +1,3 @@
 # TON-Solidity
 
-BLOCKCHAIN Technology Course
+BLOCKCHAIN Technology
