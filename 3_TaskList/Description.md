@@ -14,8 +14,9 @@ Following options available:
 - get a description of the task by key;
 - delete a task by key;
 - mark the task as completed by the key.
-
-
+ 
+**************************************************
+ 
 Каждая задача имеет следующую структуру:
 - название дела;
 - время добавления;
