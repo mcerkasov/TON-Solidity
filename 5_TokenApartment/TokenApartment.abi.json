@@ -1,0 +1,69 @@
+{
+	"ABI version": 2,
+	"version": "2.1",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "creatToken",
+			"inputs": [
+				{"name":"nameApartment","type":"string"},
+				{"name":"addr","type":"string"},
+				{"name":"numberFloors","type":"uint256"},
+				{"name":"quantityRooms","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "putUpForSaleToken",
+			"inputs": [
+				{"name":"tokenId","type":"uint256"},
+				{"name":"value","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "changeOwner",
+			"inputs": [
+				{"name":"tokenId","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "TokensArr",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"nameApartment","type":"string"},{"name":"addr","type":"string"},{"name":"numberFloors","type":"uint256"},{"name":"quantityRooms","type":"uint256"}],"name":"TokensArr","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "saleApartment",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"tokenToOwner","type":"uint256"},{"name":"forSale","type":"bool"},{"name":"price","type":"uint256"}],"name":"saleApartment","type":"map(uint256,tuple)"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"components":[{"name":"nameApartment","type":"string"},{"name":"addr","type":"string"},{"name":"numberFloors","type":"uint256"},{"name":"quantityRooms","type":"uint256"}],"name":"TokensArr","type":"tuple[]"},
+		{"components":[{"name":"tokenToOwner","type":"uint256"},{"name":"forSale","type":"bool"},{"name":"price","type":"uint256"}],"name":"saleApartment","type":"map(uint256,tuple)"}
+	]
+}
