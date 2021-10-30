@@ -1,16 +1,9 @@
 pragma ton-solidity >= 0.35.0;
 pragma AbiHeader expire;
 
-/// @title Simple wallet
-/// @author Tonlabs
 contract Wallet {
-    /*
-     Exception codes:
-      100 - message sender is not a wallet owner.
-      101 - invalid transfer value.
-     */
 
-    /// @dev Contract constructor.
+    // Contract constructor.
     constructor() public {
         // check that contract's public key is set
         require(tvm.pubkey() != 0, 101);
@@ -22,7 +15,7 @@ contract Wallet {
     // Modifier that allows function to accept external call only if it was signed
     // with contract owner's public key.
     modifier checkOwnerAndAccept {
-        require(msg.pubkey() == tvm.pubkey(), 100);
+        require(msg.pubkey() == tvm.pubkey(), 102);
 		tvm.accept();
 		_;
 	}
