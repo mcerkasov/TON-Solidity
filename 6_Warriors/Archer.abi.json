@@ -1,0 +1,111 @@
+{
+	"ABI version": 2,
+	"version": "2.1",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "createArcher",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "_characteristicArcher",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"}
+			]
+		},
+		{
+			"name": "addMilitaryToBaseStation",
+			"inputs": [
+				{"name":"BaseStation","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "attack",
+			"inputs": [
+				{"name":"enemyAddr","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getAttackPower",
+			"inputs": [
+				{"name":"attPower","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "destroyAndRemoveMilitary",
+			"inputs": [
+				{"name":"BaseStation","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getProtectionPower",
+			"inputs": [
+				{"name":"protectPower","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "acceptAttack",
+			"inputs": [
+				{"name":"attPower","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "sendingMoneyAndDestroying",
+			"inputs": [
+				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"},
+				{"name":"enemyAddr","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "processingDeath",
+			"inputs": [
+				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"},
+				{"name":"enemyAddr","type":"address"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"myProtectionPower","type":"uint256"},
+		{"name":"enemyAddr","type":"address"},
+		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unit","type":"tuple"},
+		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unitArr","type":"tuple[]"},
+		{"name":"addrMillitary","type":"address"},
+		{"name":"myAttackPower","type":"uint256"},
+		{"name":"myNumberLives","type":"int256"}
+	]
+}
