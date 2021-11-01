@@ -18,7 +18,6 @@ contract BaseStation is GameObject {
 
     // Создание базы
     function createBaseStation() public checkOwnerAndAccept {
-        tvm.accept();
         uint myAttackPower = 0;   // cила атаки
         getProtectionPower(3);   // получить силу защиты
         int myNumberLives = 10;   // количество жизни
@@ -50,14 +49,14 @@ contract BaseStation is GameObject {
         }
     }
 
-    // уничтожение базовой станции [уничтожение военных юнитов базы + 
+    // обработка гибели [вызов метода смерти для каждого из военных юнитов базы + 
     // удаление уничтоженных юнитов из базы + уничтожение базовой станции]
-    function destroyBaseStation() public checkOwnerAndAccept {
+    function processingDeath(military, address enemyAddr) public override {
         tvm.accept();
         for (uint i = 0;  i < unitArr.length; i++) {
             uint attPower = 100;
-            enemyAddr = unitArr[i].addrMillitary;
-            InterfaceGameObject(enemyAddr).acceptAttack(attPower);
+            address enemyAddr1 = unitArr[i].addrMillitary;
+            InterfaceGameObject(enemyAddr1).acceptAttack(attPower);
         }
         delete unitArr;
         sendingMoneyAndDestroying(unit, enemyAddr);

@@ -32,7 +32,7 @@ contract GameObject is InterfaceGameObject {
         myProtectionPower = protectPower;
     }
 
-    // принять атаку [адрес того, кто атаковал можно получить из msg] external
+    // принять атаку
     function acceptAttack(uint attPower) virtual external override {
         tvm.accept();
         enemyAddr = msg.sender;
@@ -43,7 +43,7 @@ contract GameObject is InterfaceGameObject {
     }
 
     
-    // проверить, убит ли объект (private)
+    // проверить, убит ли объект
     function isKilled(int numberLives) private {
         tvm.accept();
         if (unit.numberLives < 1) {
@@ -51,17 +51,15 @@ contract GameObject is InterfaceGameObject {
         }
     }
 
-    // отправка всех денег по адресу и уничтожение
+    // отправка 1 Ton на адрес победителя и уничтожение своей единицы
     function sendingMoneyAndDestroying(military, address enemyAddr) public {
         tvm.accept();
         enemyAddr.transfer(1 Ton, true, 0);
         unit = military ("", 0, 0, 0, unit.addrMillitary, "Dead");
     }
 
-    // обработка гибели [вызов метода самоуничтожения]
     function processingDeath(military, address enemyAddr) virtual public {
         tvm.accept();
         sendingMoneyAndDestroying(unit, enemyAddr);
     }
-
 }
