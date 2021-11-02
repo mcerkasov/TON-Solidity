@@ -59,7 +59,7 @@
 			]
 		},
 		{
-			"name": "sendingMoneyAndDestroying",
+			"name": "processingDeath",
 			"inputs": [
 				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"},
 				{"name":"enemyAddr","type":"address"}
@@ -68,10 +68,11 @@
 			]
 		},
 		{
-			"name": "processingDeath",
+			"name": "sendingMoneyAndDestroying",
 			"inputs": [
 				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"},
-				{"name":"enemyAddr","type":"address"}
+				{"name":"enemyAddr","type":"address"},
+				{"name":"award","type":"uint128"}
 			],
 			"outputs": [
 			]
@@ -86,11 +87,10 @@
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
 		{"name":"myProtectionPower","type":"uint256"},
+		{"name":"myAttackPower","type":"uint256"},
+		{"name":"award","type":"uint128"},
 		{"name":"enemyAddr","type":"address"},
 		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unit","type":"tuple"},
-		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unitArr","type":"tuple[]"},
-		{"name":"addrMillitary","type":"address"},
-		{"name":"myAttackPower","type":"uint256"},
-		{"name":"myNumberLives","type":"int256"}
+		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unitArr","type":"tuple[]"}
 	]
 }

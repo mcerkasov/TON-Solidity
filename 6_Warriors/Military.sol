@@ -12,11 +12,6 @@ import "GameObject.sol";
 
 contract Military is GameObject {
 
-    address addrMillitary;
-    uint myAttackPower;
-    int myNumberLives = 5;
-
-
     constructor() public {
         // check that contract's public key is set
         require(tvm.pubkey() != 0, 101);
@@ -25,12 +20,12 @@ contract Military is GameObject {
         tvm.accept();
     }
 
-    // Вызов метода "Базовой Станции" "Добавить военный юнит"
+    // Вызов метода "Базовой Станции" "Добавить военный юнит на базу"
     function addMilitaryToBaseStation(InterfaceBaseStation BaseStation) public checkOwnerAndAccept {
         BaseStation.addMilitaryToBaseStation(unit);
     }
 
-    // Атаковать (принимает ИИО [его адрес])
+    // Атаковать
     function attack(InterfaceGameObject enemyAddr) public checkOwnerAndAccept{
         uint attPower = unit.attackPower;
         enemyAddr.acceptAttack(attPower);
@@ -41,9 +36,9 @@ contract Military is GameObject {
         myAttackPower = attPower;
     }
 
-    // Обработка гибели [вызов метода самоуничтожения + убрать военный юнит из базовой станции]
+    // Обработка гибели юнита (вызов метода самоуничтожения + удалить военный юнит из базовой станции)
     function destroyAndRemoveMilitary(InterfaceBaseStation BaseStation) public checkOwnerAndAccept {
-        sendingMoneyAndDestroying(unit, BaseStation);
-        BaseStation.removeMilitary(address(this));
+        sendingMoneyAndDestroying(unit, BaseStation, award);
+        BaseStation.removeMilitary(unit.addrMillitary);
     }
 }

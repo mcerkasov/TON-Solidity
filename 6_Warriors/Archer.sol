@@ -11,6 +11,10 @@ import "Military.sol";
 // This is class that describes you smart contract.
 contract Archer is Military {
 
+    uint AttackPower = 4;   // cила атаки
+    uint ProtectionPower = 2;   // cила защиты
+    int NumberLives = 5;   // количество жизни
+
     constructor() public {
         // check that contract's public key is set
         require(tvm.pubkey() != 0, 101);
@@ -22,11 +26,12 @@ contract Archer is Military {
     // Создание лучника
     function createArcher() public checkOwnerAndAccept {
         tvm.accept();
-        getAttackPower(4);   // Получить силу атаки
-        getProtectionPower(2);   // получить силу защиты
-        unit = military ("Archer", myAttackPower, myProtectionPower, myNumberLives, address(this), "Alive");
+        getAttackPower(AttackPower);   // Получить силу атаки
+        getProtectionPower(ProtectionPower);   // получить силу защиты
+        unit = military ("Archer", myAttackPower, myProtectionPower, NumberLives, address(this), "Alive");
     }
 
+    // Характеристики лучника
     function _characteristicArcher() public view returns(military){
         tvm.accept();
         return unit;

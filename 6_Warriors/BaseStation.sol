@@ -7,6 +7,10 @@ import "GameObject.sol";
 
 contract BaseStation is GameObject {
 
+    uint AttackPower = 0;   // cила атаки
+    uint ProtectionPower = 3;   // cила защиты
+    int NumberLives = 10;   // количество жизни
+
     /// Contract constructor.
     constructor() public {
         // check that contract's public key is set
@@ -16,22 +20,20 @@ contract BaseStation is GameObject {
         tvm.accept();
     }
 
-    // Создание базы
+    // Создать базу
     function createBaseStation() public checkOwnerAndAccept {
-        uint myAttackPower = 0;   // cила атаки
-        getProtectionPower(3);   // получить силу защиты
-        int myNumberLives = 10;   // количество жизни
-        unit = military ("BaseStation", myAttackPower, myProtectionPower, myNumberLives, address(this), "Alive"); 
+        getProtectionPower(ProtectionPower);
+        unit = military ("BaseStation", AttackPower, myProtectionPower, NumberLives, address(this), "Alive"); 
     }
 
-    //Добавить военный юнит (добавляет адрес военного юнита в массив)
+    // Добавить военный юнит на базу
     function addMilitaryToBaseStation(military unit) virtual public {
         tvm.accept();
         require (unitArr.length < 2, 110, "Can be only 2 units on base");
         unitArr.push(unit);
     }
 
-    //Убрать военный юнит
+    // Удалить военный юнит из базы
     function removeMilitary(address addrMillitary) virtual public {
         tvm.accept();
         require (!unitArr.empty(), 111, "No units on base");
@@ -49,24 +51,29 @@ contract BaseStation is GameObject {
         }
     }
 
-    // обработка гибели [вызов метода смерти для каждого из военных юнитов базы + 
-    // удаление уничтоженных юнитов из базы + уничтожение базовой станции]
+    // Обработка гибели (вызов метода смерти для каждого из военных юнитов базы + 
+    // удаление уничтоженных юнитов из базы + уничтожение базовой станции)
     function processingDeath(military, address enemyAddr) public override {
         tvm.accept();
+        uint128 unitCounter = 3;
         for (uint i = 0;  i < unitArr.length; i++) {
             uint attPower = 100;
             address enemyAddr1 = unitArr[i].addrMillitary;
             InterfaceGameObject(enemyAddr1).acceptAttack(attPower);
         }
         delete unitArr;
-        sendingMoneyAndDestroying(unit, enemyAddr);
+        award = unitCounter * 1 Ton;
+        sendingMoneyAndDestroying(unit, enemyAddr, award);
+        award = 1 Ton;
     }
 
-   function _unitArr() public view returns (military[]) {
+    // Военные юниты на базе
+    function _unitArr() public view returns (military[]) {
         tvm.accept();
         return unitArr;
     }  
 
+    // Характеристики базовой станции
     function _characteristicBaseStation() public view returns(military){
         tvm.accept();
         return unit;

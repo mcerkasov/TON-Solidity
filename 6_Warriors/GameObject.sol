@@ -6,6 +6,8 @@ import "Interface.sol";
 contract GameObject is InterfaceGameObject {
 
     uint myProtectionPower;
+    uint myAttackPower;
+    uint128 award = 1 Ton;
     address enemyAddr;
     military unit;
     military[] unitArr;
@@ -27,13 +29,13 @@ contract GameObject is InterfaceGameObject {
 		_;
 	} 
 
-    // получить силу защиты
+    // Получить силу защиты
     function getProtectionPower(uint protectPower) public checkOwnerAndAccept {
         myProtectionPower = protectPower;
     }
 
-    // принять атаку
-    function acceptAttack(uint attPower) virtual external override {
+    // Принять атаку
+    function acceptAttack(uint attPower) external override {
         tvm.accept();
         enemyAddr = msg.sender;
         if (attPower > myProtectionPower) {
@@ -43,7 +45,7 @@ contract GameObject is InterfaceGameObject {
     }
 
     
-    // проверить, убит ли объект
+    // Проверить, убит ли объект
     function isKilled(int numberLives) private {
         tvm.accept();
         if (unit.numberLives < 1) {
@@ -51,15 +53,19 @@ contract GameObject is InterfaceGameObject {
         }
     }
 
-    // отправка 1 Ton на адрес победителя и уничтожение своей единицы
-    function sendingMoneyAndDestroying(military, address enemyAddr) public {
-        tvm.accept();
-        enemyAddr.transfer(1 Ton, true, 0);
-        unit = military ("", 0, 0, 0, unit.addrMillitary, "Dead");
-    }
-
+    // Обработка гибели (вызов метода самоуничтожения)
     function processingDeath(military, address enemyAddr) virtual public {
         tvm.accept();
-        sendingMoneyAndDestroying(unit, enemyAddr);
+        sendingMoneyAndDestroying(unit, enemyAddr, award);
     }
+
+    // Самоуничтожение (отправка награды на адрес победителя и уничтожение своей единицы)
+    function sendingMoneyAndDestroying(military, address enemyAddr, uint128 award) public {
+        tvm.accept();
+        if (unit.status == "Alive") {
+            enemyAddr.transfer(award, true, 0);
+            unit = military ("", 0, 0, 0, unit.addrMillitary, "Dead");
+        }
+    }
+
 }
