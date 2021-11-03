@@ -35,11 +35,20 @@
 			]
 		},
 		{
-			"name": "destroyAndRemoveMilitary",
+			"name": "processingDeath",
 			"inputs": [
-				{"name":"BaseStation","type":"address"}
+				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"},
+				{"name":"enemyAddr","type":"address"}
 			],
 			"outputs": [
+			]
+		},
+		{
+			"name": "_addressBaseStation",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
 			]
 		},
 		{
@@ -54,15 +63,6 @@
 			"name": "acceptAttack",
 			"inputs": [
 				{"name":"attPower","type":"uint256"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "processingDeath",
-			"inputs": [
-				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple"},
-				{"name":"enemyAddr","type":"address"}
 			],
 			"outputs": [
 			]
@@ -91,6 +91,8 @@
 		{"name":"award","type":"uint128"},
 		{"name":"enemyAddr","type":"address"},
 		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unit","type":"tuple"},
-		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unitArr","type":"tuple[]"}
+		{"components":[{"name":"name","type":"string"},{"name":"addrMillitary","type":"address"}],"name":"unitToBaseStation","type":"tuple"},
+		{"components":[{"name":"name","type":"string"},{"name":"addrMillitary","type":"address"}],"name":"unitArr","type":"tuple[]"},
+		{"name":"bs","type":"address"}
 	]
 }

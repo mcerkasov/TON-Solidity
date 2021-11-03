@@ -5,12 +5,19 @@ import "Interface.sol";
 
 contract GameObject is InterfaceGameObject {
 
+    struct militaryBS {
+        string name;
+        address addrMillitary;
+    }
+
     uint myProtectionPower;
     uint myAttackPower;
     uint128 award = 1 Ton;
     address enemyAddr;
     military unit;
-    military[] unitArr;
+    militaryBS unitToBaseStation;
+    militaryBS[] unitArr;
+    address bs;
 
     /// Contract constructor.
     constructor() public {

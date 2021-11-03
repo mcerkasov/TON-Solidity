@@ -20,9 +20,10 @@ contract Military is GameObject {
         tvm.accept();
     }
 
-    // Вызов метода "Базовой Станции" "Добавить военный юнит на базу"
+    // Вызов метода "Базовой Станции" "Добавить военный юнит на базу" и сохранить адрес "Базовой Станции"
     function addMilitaryToBaseStation(InterfaceBaseStation BaseStation) public checkOwnerAndAccept {
         BaseStation.addMilitaryToBaseStation(unit);
+        bs = BaseStation;
     }
 
     // Атаковать
@@ -37,8 +38,14 @@ contract Military is GameObject {
     }
 
     // Обработка гибели юнита (вызов метода самоуничтожения + удалить военный юнит из базовой станции)
-    function destroyAndRemoveMilitary(InterfaceBaseStation BaseStation) public checkOwnerAndAccept {
-        sendingMoneyAndDestroying(unit, BaseStation, award);
-        BaseStation.removeMilitary(unit.addrMillitary);
+    function processingDeath(military, address enemyAddr) public override {
+        sendingMoneyAndDestroying(unit, enemyAddr, award);
+        InterfaceBaseStation(bs).removeMilitary(unit.addrMillitary);
+    }
+
+    // 
+    function _addressBaseStation() public view returns(address){
+        tvm.accept();
+        return bs;
     }
 }

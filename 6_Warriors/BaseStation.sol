@@ -7,7 +7,6 @@ import "GameObject.sol";
 
 contract BaseStation is GameObject {
 
-    uint AttackPower = 0;   // cила атаки
     uint ProtectionPower = 3;   // cила защиты
     int NumberLives = 10;   // количество жизни
 
@@ -22,6 +21,7 @@ contract BaseStation is GameObject {
 
     // Создать базу
     function createBaseStation() public checkOwnerAndAccept {
+        uint AttackPower = 0;   // cила атаки
         getProtectionPower(ProtectionPower);
         unit = military ("BaseStation", AttackPower, myProtectionPower, NumberLives, address(this), "Alive"); 
     }
@@ -30,7 +30,8 @@ contract BaseStation is GameObject {
     function addMilitaryToBaseStation(military unit) virtual public {
         tvm.accept();
         require (unitArr.length < 2, 110, "Can be only 2 units on base");
-        unitArr.push(unit);
+        unitToBaseStation = militaryBS (unit.name, unit.addrMillitary);
+        unitArr.push(unitToBaseStation);
     }
 
     // Удалить военный юнит из базы
@@ -57,9 +58,10 @@ contract BaseStation is GameObject {
         tvm.accept();
         uint128 unitCounter = 3;
         for (uint i = 0;  i < unitArr.length; i++) {
+            unitCounter++;
             uint attPower = 100;
-            address enemyAddr1 = unitArr[i].addrMillitary;
-            InterfaceGameObject(enemyAddr1).acceptAttack(attPower);
+            address unitAddr = unitArr[i].addrMillitary;
+            InterfaceGameObject(unitAddr).acceptAttack(attPower);
         }
         delete unitArr;
         award = unitCounter * 1 Ton;
@@ -68,7 +70,7 @@ contract BaseStation is GameObject {
     }
 
     // Военные юниты на базе
-    function _unitArr() public view returns (military[]) {
+    function _unitArr() public view returns (militaryBS[]) {
         tvm.accept();
         return unitArr;
     }  

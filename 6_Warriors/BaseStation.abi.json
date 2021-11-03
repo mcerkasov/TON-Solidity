@@ -47,7 +47,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"value0","type":"tuple[]"}
+				{"components":[{"name":"name","type":"string"},{"name":"addrMillitary","type":"address"}],"name":"value0","type":"tuple[]"}
 			]
 		},
 		{
@@ -98,8 +98,9 @@
 		{"name":"award","type":"uint128"},
 		{"name":"enemyAddr","type":"address"},
 		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unit","type":"tuple"},
-		{"components":[{"name":"name","type":"string"},{"name":"attackPower","type":"uint256"},{"name":"protectionPower","type":"uint256"},{"name":"numberLives","type":"int256"},{"name":"addrMillitary","type":"address"},{"name":"status","type":"string"}],"name":"unitArr","type":"tuple[]"},
-		{"name":"AttackPower","type":"uint256"},
+		{"components":[{"name":"name","type":"string"},{"name":"addrMillitary","type":"address"}],"name":"unitToBaseStation","type":"tuple"},
+		{"components":[{"name":"name","type":"string"},{"name":"addrMillitary","type":"address"}],"name":"unitArr","type":"tuple[]"},
+		{"name":"bs","type":"address"},
 		{"name":"ProtectionPower","type":"uint256"},
 		{"name":"NumberLives","type":"int256"}
 	]
