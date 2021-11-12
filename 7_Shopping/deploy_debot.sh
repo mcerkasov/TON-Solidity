@@ -46,7 +46,7 @@ function giver {
         --abi ../_base/giver.abi.json \
         --sign ../_base/giver.keys.json \
         sendTransaction "{\"dest\":\"$1\",\"value\":2000000000,\"bounce\":false}" \
-        #1>/dev/null
+        1>/dev/null
 }
 
 function get_address {
@@ -57,12 +57,12 @@ function genaddr {
     $tos genaddr $1.tvc $1.abi.json --genkey $1.keys.json > $1.log
 }
 
-echo "Step 1. Calculating debot address"
+echo "Step 1. Compiling debot and calculating debot address"
+tondev sol compile $DEBOT_NAME.sol
 genaddr $DEBOT_NAME
 DEBOT_ADDRESS=$(get_address $DEBOT_NAME)
 
-echo "Step 2. Please send a couple of tokens to address: $DEBOT_ADDRESS"
-#read -p "And press any key to continue.. " -n1 -s
+echo "Step 2. Sending tokens to address: $DEBOT_ADDRESS"
 giver $DEBOT_ADDRESS
 DEBOT_ABI=$(cat $DEBOT_NAME.abi.json | xxd -ps -c 20000)
 
@@ -79,6 +79,6 @@ $tos --url $NETWORK call $DEBOT_ADDRESS setABI "{\"dabi\":\"$DEBOT_ABI\"}" \
 $tos --url $NETWORK call $DEBOT_ADDRESS \
     --sign $DEBOT_NAME.keys.json \
     --abi $DEBOT_NAME.abi.json \
-    setShopingCode **.decode.json #1>/dev/null
+    setShopingCode **.decode.json 1>/dev/null
 
 echo "Done! Deployed debot with address: $DEBOT_ADDRESS"
