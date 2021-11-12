@@ -53,7 +53,11 @@ contract ShoppingInStore is ShoppingDebot{
 
     function makePurchase__(bool value) public {
         buy = value;
-        Terminal.input(tvm.functionId(makePurchase___), "Purchase price:", false);
+        if (buy) {
+            Terminal.input(tvm.functionId(makePurchase___), "Purchase price:", false);
+        } else {
+            _menu();
+        }
     }
 
     function makePurchase___(string value) public {

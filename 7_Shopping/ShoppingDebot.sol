@@ -129,7 +129,7 @@ abstract contract ShoppingDebot is Debot {
             sign: true,
             pubkey: none,
             stateInit: image,
-            call: {AShopping, m_masterPubKey}
+            call: {HasConstructorWithPubKey, m_masterPubKey}
         });
         tvm.sendrawmsg(deployMsg, 1);
     }

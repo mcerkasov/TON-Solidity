@@ -23,7 +23,7 @@ interface IMsig {
 }
 
 
-abstract contract AShopping {
+abstract contract HasConstructorWithPubKey {
    constructor(uint256 pubkey) public {}
 }
 
