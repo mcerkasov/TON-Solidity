@@ -1,6 +1,6 @@
 # Shopping
 
-## Smart contract and a series of debotes for him on the topic "shopping list"
+## A series of contracts on the topic "shopping list"
 
 The application consists of the following contracts:
 
@@ -8,7 +8,7 @@ IShopping -  contains structures, interfaces and an abstract contract included i
 
 ShoppingList - a list of possible tasks.
 
-ShoppingDebot has two heirs: ShoppingListMakingDebot and ShoppingInStoreDebot. They are already deployed on the blockchain.
+ShoppingDebot - abstract debot, has two heirs: ShoppingListMakingDebot and ShoppingInStoreDebot. They are already deployed in the blockchain.
 
 ### net.ton.dev
 
@@ -50,13 +50,15 @@ Deployment of the debot ShoppingInStoreDebot:
 $ ./deploy_debot.sh ShoppingInStoreDebot.tvc https://net.ton.dev
 ```
 
+deploy_debot.sh will also work with files giver.abi.json и giver.keys.json which are located in the folder "_base".
+
 
 
 **************************************************
 
 
 
-## Смарт-контракт и серия деботов для него по теме "список покупок"
+## Серия контрактов на тему "список покупок"
 
 Приложение состоит из следующих контрактов:
 
@@ -64,7 +66,7 @@ IShopping - содержит структуры, интерфейсы и абс�
 
 ShoppingList - список возможных задач.
 
-ShoppingDebot имеет два наследника: ShoppingListMakingDebot и ShoppingInStoreDebot. Они уже развернуты на блокчейне.
+ShoppingDebot - абстрактный дебот, имеет два наследника: ShoppingListMakingDebot и ShoppingInStoreDebot. Они уже развернуты в блокчейне.
 
 ### net.ton.dev
 
@@ -105,3 +107,5 @@ $ ./deploy_debot.sh ShoppingListMakingDebot.tvc https://net.ton.dev
  ```
 $ ./deploy_debot.sh ShoppingInStoreDebot.tvc https://net.ton.dev
  ```
+
+deploy_debot.sh также будет работать с файлами giver.abi.json и giver.keys.json, которые находятся в папке "_base".
